@@ -1,7 +1,8 @@
-FROM node:15-alpine
+FROM node:15
 
 WORKDIR /build
 COPY package.json /build/
+COPY package-lock.json /build/
 RUN npm install
 COPY . /build/
 
