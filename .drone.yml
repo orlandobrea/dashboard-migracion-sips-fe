@@ -1,0 +1,68 @@
+---
+kind: pipeline
+type: kubernetes
+name: default
+
+steps:
+  # - name: precheck
+  #   image: orlandobrea/andes-check-image-exist:latest
+  #   pull: always
+  #   environment:
+  #     # REGISTRY_URL: registry.hub.docker.com
+  #     IMAGE_NAME: orlandobrea/dashboard-migracion-sips-fe
+  #     TAG: ${DRONE_BRANCH}-${DRONE_COMMIT_SHA}
+  #     REGISTRY_USER:
+  #       from_secret: REGISTRY_USER
+  #     REGISTRY_PASSWORD:
+  #       from_secret: REGISTRY_PASSWORD
+  # Test
+
+  # Release
+  - name: release
+    image: docker:dind
+    # volumes:
+    #   - name: dockersock
+    #     path: /var/run
+    environment:
+      GITHUB_TOKEN:
+        from_secret: GITHUB_TOKEN
+    commands:
+      - apk update && apk add git nodejs npm
+      - npm install
+      - npx semantic-release
+      # - export GIT_HASH=$(git log -1 --format=format:"%H")
+      - node -p "require('./package.json').version" | tr -d '\n' > .tags
+      - echo ",${DRONE_BRANCH},${DRONE_BRANCH}-${DRONE_COMMIT_SHA}" | tr -d '\n' >> .tags
+      - echo "Tagged version "$(cat .tags)
+  - name: build
+    image: plugins/docker
+    # when:
+    #   status:
+    #     - failure
+    settings:
+      debug: false
+      username:
+        from_secret: REGISTRY_USER
+      password:
+        from_secret: REGISTRY_PASSWORD
+      # registry: ${DOCKER_REGISTRY_URL}
+      repo: orlandobrea/dashboard-migracion-sips-fe
+      # tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}", $(cat APP_VERSION)]
+      # insecure: true
+
+# services:
+#   - name: docker
+#     image: docker:dind
+#     privileged: true
+#     volumes:
+#       - name: dockersock
+#         path: /var/run
+
+
+# Params example:
+# DRONE_BRANCH: master
+# DOCKER_REGISTRY_URL: registry.192-168-68-2.nip.io:30443
+
+# volumnes:
+#   - name: dockersock
+#     temp: {}

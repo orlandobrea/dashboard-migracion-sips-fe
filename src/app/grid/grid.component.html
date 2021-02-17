@@ -1,0 +1,19 @@
+<div
+  class="px-8 py-4 bg-gray-200 shadow rounded-xl border-pink-500 border-2 text-pink-500"
+  *ngIf="error"
+>
+  <p>
+    Error: no pude realizar la conexión con el servidor o con la base de datos
+  </p>
+  <p class="text-sm text-center">
+    (voy a intentar la operación cada 10 segundos)
+  </p>
+</div>
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-4 gap-4 p-4"
+  *ngIf="!error"
+>
+  <div *ngFor="let item of list">
+    <app-grid-item [item]="item"></app-grid-item>
+  </div>
+</div>
