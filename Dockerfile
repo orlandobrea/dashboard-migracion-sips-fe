@@ -3,7 +3,7 @@ FROM node:15-alpine
 WORKDIR /build
 COPY package.json /build/
 COPY package-lock.json /build/
-RUN npm install --only=prod
+RUN npm install
 COPY . /build/
 
 RUN npm run build
