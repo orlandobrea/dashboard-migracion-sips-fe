@@ -23,38 +23,34 @@ export class DashboardService {
     return response;
   }
 
-  applyTimezoneToDate(date: Date){
+  applyTimezoneToDate(date: Date) {
     return moment.utc(date).utcOffset('-0300', true).toDate();
   }
 
   getDashboard() {
-    return this.configService.getConfig().pipe(
-      tap((r) => {
-        this.config = r;
-      }),
-      mergeMap((config: any) => {
-        return this.http.get(`${config.server}${this.endpoint}`).pipe(
-          map((list: any) =>
-            list
-              .filter((item: any) => item.NombreServidor)
-              .map((item: any) => {
-                return {
-                  servidor: item.NombreServidor,
-                  horasDesdeUltimoSync: this.minutesFrom(
-                    item.ultimoSyncFechaFin
-                  ),
-                  horasDesdeUltimoSyncEfector: this.minutesFrom(
-                    item.ultimoUpdateEfectorFin
-                  ),
-                  horaInicioUltimoSync: item.ultimoSyncFechaInicio,
-                  horaFinUltimoSync: item.ultimoSyncFechaFin,
-                  horaInicioUltimoSyncEfector: this.applyTimezoneToDate(item.ultimoUpdateEfectorInicio),
-                  horaFinUltimoSyncEfector: this.applyTimezoneToDate(item.ultimoUpdateEfectorFin),
-                };
-              })
-          )
-        );
-      })
+    const server = this.configService.getConfig().server;
+    return this.http.get(`${server}${this.endpoint}`).pipe(
+      map((list: any) =>
+        list
+          .filter((item: any) => item.NombreServidor)
+          .map((item: any) => {
+            return {
+              servidor: item.NombreServidor,
+              horasDesdeUltimoSync: this.minutesFrom(item.ultimoSyncFechaFin),
+              horasDesdeUltimoSyncEfector: this.minutesFrom(
+                item.ultimoUpdateEfectorFin
+              ),
+              horaInicioUltimoSync: item.ultimoSyncFechaInicio,
+              horaFinUltimoSync: item.ultimoSyncFechaFin,
+              horaInicioUltimoSyncEfector: this.applyTimezoneToDate(
+                item.ultimoUpdateEfectorInicio
+              ),
+              horaFinUltimoSyncEfector: this.applyTimezoneToDate(
+                item.ultimoUpdateEfectorFin
+              ),
+            };
+          })
+      )
     );
   }
 }

@@ -1,3 +1,10 @@
-<div class="bg-gradient-to-r from-pink-600 to-blue-500 w-screen min-h-screen">
+<div
+  class="bg-gradient-to-r from-pink-600 to-blue-500 w-screen min-h-screen py-5"
+>
   <app-grid></app-grid>
+  <footer
+    class="fixed bottom-0 right-0 bg-gray-50 p-1 opacity-70 text-xs rounded-tl-lg"
+  >
+    front {{ appVersion }} / back {{ serverVersion }}
+  </footer>
 </div>

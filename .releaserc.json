@@ -2,5 +2,19 @@
   "release": {
     "branches": ["master"],
     "repositoryUrl": "https://github.com/orlandobrea/dashboard-migracion-sips-fe.git"
-  }
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/npm", { "npmPublish": false }]
+  ],
+  "prepare": [
+    "@semantic-release/changelog",
+    "@semantic-release/npm",
+    {
+      "path": "@semantic-release/git",
+      "assets": ["package.json", "package-lock.json", "CHANGELOG.md"],
+      "message": "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}"
+    }
+  ]
 }
