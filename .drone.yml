@@ -18,7 +18,7 @@ steps:
   # Test
 
   - name: test
-    image: node:12-alpine
+    image: cypress/base:10
     environment:
       GITHUB_TOKEN:
         from_secret: GITHUB_TOKEN
