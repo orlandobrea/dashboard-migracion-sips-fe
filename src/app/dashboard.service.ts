@@ -16,7 +16,7 @@ export class DashboardService {
   minutesFrom(from: Date) {
     const response = from
       ? moment(new Date()).diff(
-          moment.utc(from).utcOffset('-0300', true),
+          moment.utc(from),
           'hours'
         )
       : null;

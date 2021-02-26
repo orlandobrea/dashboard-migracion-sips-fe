@@ -17,6 +17,15 @@ steps:
   #       from_secret: REGISTRY_PASSWORD
   # Test
 
+  - name: test
+    image: node:12-alpine
+    environment:
+      GITHUB_TOKEN:
+        from_secret: GITHUB_TOKEN
+    commands:
+      - npm install
+      - npm run test
+
   # Release
   - name: release
     image: docker:dind

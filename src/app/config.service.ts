@@ -15,10 +15,13 @@ export class ConfigService {
   }
 
   load() {
-    return this.http.get('/assets/settings.json').pipe(
-      tap((r: any) => {
-        this.config = r;
-      })
-    ).toPromise();
+    return this.http
+      .get('/assets/settings.json')
+      .pipe(
+        tap((r: any) => {
+          this.config = r;
+        })
+      )
+      .toPromise();
   }
 }

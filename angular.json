@@ -23,7 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/favicon.ico", "src/assets", "src/mockServiceWorker.js"],
             "styles": ["src/styles.scss"],
             "scripts": [],
             "customWebpackConfig": {
@@ -31,6 +31,14 @@
             }
           },
           "configurations": {
+            "test": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -66,6 +74,9 @@
             "browserTarget": "dashboard-migracion-sips-fe:build"
           },
           "configurations": {
+            "test": {
+              "browserTarget": "dashboard-migracion-sips-fe:build:test"
+            },
             "production": {
               "browserTarget": "dashboard-migracion-sips-fe:build:production"
             }
@@ -84,7 +95,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/favicon.ico", "src/assets", "src/mockServiceWorker.js"],
             "styles": ["src/styles.scss"],
             "scripts": [],
             "customWebpackConfig": {
