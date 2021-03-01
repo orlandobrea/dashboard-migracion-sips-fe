@@ -18,11 +18,12 @@ steps:
   # Test
 
   - name: test
-    image: cypress/base:10
+    image: cypress/base:12
     environment:
       GITHUB_TOKEN:
         from_secret: GITHUB_TOKEN
     commands:
+      - npm install -g cypress
       - npm install
       - npm run test
 
