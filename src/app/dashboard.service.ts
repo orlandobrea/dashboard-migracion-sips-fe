@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { filter, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import * as moment from 'moment';
 
@@ -15,10 +15,7 @@ export class DashboardService {
 
   minutesFrom(from: Date) {
     const response = from
-      ? moment(new Date()).diff(
-          moment.utc(from),
-          'hours'
-        )
+      ? moment(new Date()).diff(moment.utc(from), 'hours')
       : null;
     return response;
   }
@@ -40,8 +37,12 @@ export class DashboardService {
               horasDesdeUltimoSyncEfector: this.minutesFrom(
                 item.ultimoUpdateEfectorFin
               ),
-              horaInicioUltimoSync: item.ultimoSyncFechaInicio,
-              horaFinUltimoSync: item.ultimoSyncFechaFin,
+              horaInicioUltimoSync: this.applyTimezoneToDate(
+                item.ultimoSyncFechaInicio
+              ),
+              horaFinUltimoSync: this.applyTimezoneToDate(
+                item.ultimoSyncFechaFin
+              ),
               horaInicioUltimoSyncEfector: this.applyTimezoneToDate(
                 item.ultimoUpdateEfectorInicio
               ),
