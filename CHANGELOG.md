@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/orlandobrea/dashboard-migracion-sips-fe/compare/v1.0.5...v1.0.6) (2021-03-15)
+
+
+### Bug Fixes
+
+* conver datetime to real on pendings dates ([3ebebd6](https://github.com/orlandobrea/dashboard-migracion-sips-fe/commit/3ebebd6b7233875021e4b213a6e91a21b0c8b611))
+
 ## [1.0.5](https://github.com/orlandobrea/dashboard-migracion-sips-fe/compare/v1.0.4...v1.0.5) (2021-03-01)
 
 
