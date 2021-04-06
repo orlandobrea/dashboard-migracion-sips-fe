@@ -5,7 +5,6 @@ COPY package.json /build/
 COPY package-lock.json /build/
 RUN npm install
 COPY . /build/
-
 RUN npm run build
 
 FROM nginx:1.19-alpine

@@ -33,6 +33,7 @@ export class DashboardService {
           .map((item: any) => {
             return {
               servidor: item.nombreEfector,
+              idEfector: item.idEfector,
               horasDesdeUltimoSync: this.minutesFrom(item.ultimoSyncFechaFin),
               horasDesdeUltimoSyncEfector: this.minutesFrom(
                 item.ultimoUpdateEfectorFin
