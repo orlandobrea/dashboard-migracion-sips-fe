@@ -29,10 +29,10 @@ export class DashboardService {
     return this.http.get(`${server}${this.endpoint}`).pipe(
       map((list: any) =>
         list
-          .filter((item: any) => item.NombreServidor)
+          .filter((item: any) => item.nombreEfector)
           .map((item: any) => {
             return {
-              servidor: item.NombreServidor,
+              servidor: item.nombreEfector,
               horasDesdeUltimoSync: this.minutesFrom(item.ultimoSyncFechaFin),
               horasDesdeUltimoSyncEfector: this.minutesFrom(
                 item.ultimoUpdateEfectorFin
