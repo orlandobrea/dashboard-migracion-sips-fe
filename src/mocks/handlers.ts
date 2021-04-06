@@ -16,7 +16,7 @@ export const handlers = [
           ultimoSyncRegistrosDetalle: 11722,
           minutosMinimoSyncEfector: 1,
           minutosMinimoSyncPrincipal: 1,
-          NombreServidor: 'SERVER01',
+          nombreEfector: 'SERVER01',
         },
         {
           ultimoSyncFechaInicio: moment().subtract(1, 'hour').toJSON(),
@@ -30,7 +30,7 @@ export const handlers = [
           ultimoSyncRegistrosDetalle: 4990,
           minutosMinimoSyncEfector: 1,
           minutosMinimoSyncPrincipal: 1,
-          NombreServidor: 'SERVER02',
+          nombreEfector: 'SERVER02',
         },
       ])
     );
