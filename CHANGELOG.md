@@ -1,3 +1,11 @@
+## [1.0.7](https://github.com/orlandobrea/dashboard-migracion-sips-fe/compare/v1.0.6...v1.0.7) (2021-04-15)
+
+
+### Bug Fixes
+
+* add idEfector to dashboard ([2c94af9](https://github.com/orlandobrea/dashboard-migracion-sips-fe/commit/2c94af974c1d14dc219915759acb42814fa534cd))
+* update query to new table structure ([7faa282](https://github.com/orlandobrea/dashboard-migracion-sips-fe/commit/7faa282f325b4fb910fb17a68ebfc155713888e8))
+
 ## [1.0.6](https://github.com/orlandobrea/dashboard-migracion-sips-fe/compare/v1.0.5...v1.0.6) (2021-03-15)
 
 
