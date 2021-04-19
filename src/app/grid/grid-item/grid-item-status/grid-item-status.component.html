@@ -2,13 +2,23 @@
   <span class="mr-2">{{ titulo }}</span>
   <div
     class="p-1 items-center justify-center rounded-full text-white text-center w-20"
-    [ngClass]="horaDesdeSync > 23 ? 'bg-red-700' : horaDesdeSync==null ? 'bg-yellow-500' : 'bg-green-500'"
+    [ngClass]="
+      horaDesdeSync > 23
+        ? 'bg-red-700'
+        : horaDesdeSync == null
+        ? 'bg-yellow-500'
+        : 'bg-green-500'
+    "
   >
-  <div *ngIf="horaDesdeSync !== null && horaDesdeSync!==0"> ~ {{ horaDesdeSync }} <span *ngIf="horaDesdeSync>1">hs</span> <span *ngIf="horaDesdeSync<=1">h</span> </div>
-    <div *ngIf="horaDesdeSync === 0"> < 1 h </div>
+  <div *ngIf="horaDesdeSync !== null && horaDesdeSync !== 0" title='Hora de última sincronización {{horaInicioSync | date: "dd/MM HH:mm"}}'>
+      ~ {{ horaDesdeSync }} <span *ngIf="horaDesdeSync > 1">hs</span>
+      <span *ngIf="horaDesdeSync <= 1">h</span>
+    </div>
+    <div *ngIf="horaDesdeSync === 0" title='Hora de última sincronización {{horaInicioSync | date: "dd/MM HH:mm"}}'>< 1 h</div>
     <span *ngIf="horaDesdeSync == null"> migrando</span>
   </div>
-  <div class="mt-1">&nbsp;
+  <div class="mt-1">
+    &nbsp;
     <span *ngIf="horaDesdeSync == null">
       (inicio {{ horaInicioSync | date: "dd/MM HH:mm" }})
     </span>

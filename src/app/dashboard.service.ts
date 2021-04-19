@@ -21,7 +21,7 @@ export class DashboardService {
   }
 
   applyTimezoneToDate(date: Date) {
-    return moment.utc(date).utcOffset('-0300', true).toDate();
+    return moment.utc(date).utcOffset('0000', true).toDate();
   }
 
   getDashboard() {
