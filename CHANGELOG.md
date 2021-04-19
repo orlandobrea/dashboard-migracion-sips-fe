@@ -1,3 +1,11 @@
+## [1.0.8](https://github.com/orlandobrea/dashboard-migracion-sips-fe/compare/v1.0.7...v1.0.8) (2021-04-19)
+
+
+### Bug Fixes
+
+* hora incorrecta al mostrar sincronizando ([30c14d4](https://github.com/orlandobrea/dashboard-migracion-sips-fe/commit/30c14d4797155b9ecabfb55966a93de2f8e5abd0))
+* increment build number ([0aeecac](https://github.com/orlandobrea/dashboard-migracion-sips-fe/commit/0aeecacbea110e83740b0a6c7662662f7585dd85))
+
 ## [1.0.7](https://github.com/orlandobrea/dashboard-migracion-sips-fe/compare/v1.0.6...v1.0.7) (2021-04-15)
 
 
