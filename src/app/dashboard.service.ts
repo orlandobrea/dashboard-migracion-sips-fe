@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, timeout, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { ConfigService } from './config.service';
 import * as moment from 'moment';
 
@@ -13,46 +14,38 @@ export class DashboardService {
 
   constructor(private http: HttpClient, private configService: ConfigService) {}
 
-  minutesFrom(from: Date) {
-    const response = from
-      ? moment(new Date()).diff(moment.utc(from), 'hours')
-      : null;
-    return response;
-  }
-
-  applyTimezoneToDate(date: Date) {
-    return moment.utc(date).utcOffset('0000', true).toDate();
-  }
-
   getDashboard() {
+    // functions
+    const hasName = (responseItem: any) => responseItem.nombreEfector;
+    const applyTimezoneToDate = (date: Date) =>
+      moment.utc(date).utcOffset('0000', true).toDate();
+    const minutesFrom = (from: Date) =>
+      from ? moment(new Date()).diff(moment.utc(from), 'hours') : null;
+    const parseServerResponse = (responseItem: any) => ({
+      servidor: responseItem.nombreEfector,
+      idEfector: responseItem.idEfector,
+      pingStatus: responseItem.pingStatus,
+      horasDesdeUltimoSync: minutesFrom(responseItem.ultimoSyncFechaFin),
+      horasDesdeUltimoSyncEfector: minutesFrom(
+        responseItem.ultimoUpdateEfectorFin
+      ),
+      horaInicioUltimoSync: applyTimezoneToDate(
+        responseItem.ultimoSyncFechaInicio
+      ),
+      horaFinUltimoSync: applyTimezoneToDate(responseItem.ultimoSyncFechaFin),
+      horaInicioUltimoSyncEfector: applyTimezoneToDate(
+        responseItem.ultimoUpdateEfectorInicio
+      ),
+      horaFinUltimoSyncEfector: applyTimezoneToDate(
+        responseItem.ultimoUpdateEfectorFin
+      ),
+    });
+
     const server = this.configService.getConfig().server;
     return this.http.get(`${server}${this.endpoint}`).pipe(
-      map((list: any) =>
-        list
-          .filter((item: any) => item.nombreEfector)
-          .map((item: any) => {
-            return {
-              servidor: item.nombreEfector,
-              idEfector: item.idEfector,
-              horasDesdeUltimoSync: this.minutesFrom(item.ultimoSyncFechaFin),
-              horasDesdeUltimoSyncEfector: this.minutesFrom(
-                item.ultimoUpdateEfectorFin
-              ),
-              horaInicioUltimoSync: this.applyTimezoneToDate(
-                item.ultimoSyncFechaInicio
-              ),
-              horaFinUltimoSync: this.applyTimezoneToDate(
-                item.ultimoSyncFechaFin
-              ),
-              horaInicioUltimoSyncEfector: this.applyTimezoneToDate(
-                item.ultimoUpdateEfectorInicio
-              ),
-              horaFinUltimoSyncEfector: this.applyTimezoneToDate(
-                item.ultimoUpdateEfectorFin
-              ),
-            };
-          })
-      )
+      timeout(10000),
+      map((list: any) => list.filter(hasName).map(parseServerResponse)),
+      catchError((e: any) => throwError('CONNECTION_ERROR'))
     );
   }
 }

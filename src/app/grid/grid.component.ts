@@ -9,21 +9,23 @@ import { DashboardService } from '../dashboard.service';
 export class GridComponent implements OnInit {
   list: any = [];
   error: any = undefined;
+  loading = false;
 
   constructor(private service: DashboardService) {}
 
   async hacerPeticion() {
-    try {
-      this.service.getDashboard().subscribe((r: any) => {
-        this.list = r;
-        this.error = undefined;
-        setTimeout(() => this.hacerPeticion(), 10 * 60 * 1000);
-      });
-    } catch (e: any) {
-      console.log('error', e);
+    const handleError = (err: any) => {
+      this.error = err;
+      this.loading = false;
       setTimeout(() => this.hacerPeticion(), 10 * 1000);
-      this.error = e;
-    }
+    };
+    this.loading = true;
+    this.service.getDashboard().subscribe((r: any) => {
+      this.list = r;
+      this.error = undefined;
+      this.loading = false;
+      setTimeout(() => this.hacerPeticion(), 10 * 60 * 1000);
+    }, handleError);
   }
 
   ngOnInit() {

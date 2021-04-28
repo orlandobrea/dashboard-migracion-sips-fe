@@ -1,7 +1,13 @@
 <div
   class="group block rounded-xl p-4 bg-gray-100 bg-opacity-90 text-gray-800 shadow max-h-30"
 >
-<h3 class="text-center">{{ item.servidor }} [{{ item.idEfector }}]</h3>
+  <div class="block w-100 flex flex-wrap justify-between">
+    <div>&nbsp;</div>
+    <h3>
+      {{ item.servidor }} [{{ item.idEfector }}]
+    </h3>
+    <app-ping-status [status]="item.pingStatus"></app-ping-status>
+  </div>
   <div class="grid grid-cols-2 gap-1 text-xs mt-3">
     <app-grid-item-status
       titulo="Ultima Sync SIPS"

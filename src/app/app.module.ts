@@ -7,6 +7,8 @@ import { GridComponent } from './grid/grid.component';
 import { GridItemComponent } from './grid/grid-item/grid-item.component';
 import { GridItemStatusComponent } from './grid/grid-item/grid-item-status/grid-item-status.component';
 import { ConfigService } from './config.service';
+import { PingStatusComponent } from './grid/grid-item/ping-status/ping-status.component';
+import { LoadingItemComponent } from './grid/grid-item/loading-item/loading-item.component';
 
 export function appInit(configService: ConfigService) {
   return () => configService.load();
@@ -18,6 +20,8 @@ export function appInit(configService: ConfigService) {
     GridItemComponent,
     GridItemStatusComponent,
     AppComponent,
+    PingStatusComponent,
+    LoadingItemComponent,
   ],
   imports: [BrowserModule, HttpClientModule],
   providers: [ConfigService, {
