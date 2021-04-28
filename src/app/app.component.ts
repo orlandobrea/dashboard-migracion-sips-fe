@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.http
-      .get<ServerVersion>(`${this.configService.getConfig().server}/version`)
+      .get<ServerVersion>(`${this.configService.getConfig().server}/version/`)
       .subscribe(
         (r) => {
           this.serverVersion = r.version;

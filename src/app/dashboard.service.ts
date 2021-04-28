@@ -9,7 +9,7 @@ import * as moment from 'moment';
   providedIn: 'root',
 })
 export class DashboardService {
-  endpoint: string = '/';
+  endpoint: string = '';
   config: any = {};
 
   constructor(private http: HttpClient, private configService: ConfigService) {}
