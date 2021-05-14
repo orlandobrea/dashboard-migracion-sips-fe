@@ -1,7 +1,7 @@
 <!-- Loading -->
 <div
   *ngIf="loading"
-  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-4 gap-4 p-4"
+  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 p-4"
 >
   <app-loading-item *ngFor="let item of [].constructor(16)"></app-loading-item>
 </div>
@@ -20,7 +20,7 @@
 
 <!-- OK -->
 <div
-  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-4 gap-4 p-4"
+  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 p-4"
   *ngIf="!error"
 >
   <div *ngFor="let item of list">
