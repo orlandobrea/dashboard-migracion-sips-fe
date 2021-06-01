@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/orlandobrea/dashboard-migracion-sips-fe/compare/v1.0.8...v1.0.9) (2021-06-01)
+
+
+### Bug Fixes
+
+* large display number of columns ([8ea68e4](https://github.com/orlandobrea/dashboard-migracion-sips-fe/commit/8ea68e494c55ea0bda31d286e6914a177fa181e8))
+
 ## [1.0.8](https://github.com/orlandobrea/dashboard-migracion-sips-fe/compare/v1.0.7...v1.0.8) (2021-04-19)
 
 
