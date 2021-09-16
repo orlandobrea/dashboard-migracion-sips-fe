@@ -15,8 +15,7 @@
         ~ {{ diasDesdeUltimoEstudio }} dias 
       </span>
       <span *ngIf="horaDesdeUltimoEstudio<=24">
-        ~ {{ horaDesdeUltimoEstudio }} <span *ngIf="horaDesdeUltimoEstudio > 1">hs</span>
-        <span *ngIf="horaDesdeUltimoEstudio < 1">h</span>
+        Hoy
       </span>
     </div>
   <div *ngIf="horaDesdeUltimoEstudio == null " title='No hay fecha de ultimo estudio aun'>
