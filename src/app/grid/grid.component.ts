@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 
 @Component({
@@ -6,10 +6,13 @@ import { DashboardService } from '../dashboard.service';
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.css'],
 })
-export class GridComponent implements OnInit {
+export class GridComponent implements OnInit, AfterViewInit {
   list: any = [];
+  filter: string = '';
   error: any = undefined;
   loading = false;
+
+  @ViewChild('search') search: ElementRef = {} as ElementRef;
 
   constructor(private service: DashboardService) {}
 
@@ -30,5 +33,9 @@ export class GridComponent implements OnInit {
 
   ngOnInit() {
     this.hacerPeticion();
+  }
+   
+  ngAfterViewInit() {
+    this.search.nativeElement.focus();
   }
 }
