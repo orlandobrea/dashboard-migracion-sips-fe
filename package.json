@@ -1,9 +1,9 @@
 {
   "name": "dashboard-migracion-sips-fe",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0",
     "start:test": "ng serve --configuration=test",
     "build": "ng build",
     "test:unit": "jest --env=jest-environment-jsdom-sixteen",
