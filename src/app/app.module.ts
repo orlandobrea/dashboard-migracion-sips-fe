@@ -1,5 +1,6 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -9,6 +10,8 @@ import { GridItemStatusComponent } from './grid/grid-item/grid-item-status/grid-
 import { ConfigService } from './config.service';
 import { PingStatusComponent } from './grid/grid-item/ping-status/ping-status.component';
 import { LoadingItemComponent } from './grid/grid-item/loading-item/loading-item.component';
+import { GridLastProtocolMigratedComponent } from './grid/grid-item/grid-last-protocol-migrated/grid-last-protocol-migrated.component';
+import { EfectorFilterPipe } from './grid/efector-filter.pipe';
 
 export function appInit(configService: ConfigService) {
   return () => configService.load();
@@ -22,8 +25,10 @@ export function appInit(configService: ConfigService) {
     AppComponent,
     PingStatusComponent,
     LoadingItemComponent,
+    GridLastProtocolMigratedComponent,
+    EfectorFilterPipe,
   ],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [BrowserModule, HttpClientModule, FormsModule],
   providers: [ConfigService, {
     provide: APP_INITIALIZER,
     useFactory: appInit,

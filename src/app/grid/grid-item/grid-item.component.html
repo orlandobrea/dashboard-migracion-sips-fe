@@ -8,7 +8,7 @@
     </h3>
     <app-ping-status [status]="item.pingStatus"></app-ping-status>
   </div>
-  <div class="grid grid-cols-2 gap-1 text-xs mt-3">
+  <div class="grid grid-cols-1 gap-1 text-xs mt-3">
     <app-grid-item-status
       titulo="Ultima Sync SIPS"
       [horaDesdeSync]="item.horasDesdeUltimoSync"
@@ -20,5 +20,12 @@
       [horaDesdeSync]="item.horasDesdeUltimoSyncEfector"
       [horaInicioSync]="item.horaInicioUltimoSyncEfector"
     ></app-grid-item-status>
+
+    <app-grid-last-protocol-migrated
+      titulo="Fecha Ultimo Estudio"
+      [horaDesdeUltimoEstudio]="item.horasDesdeUltimoEstudioMigrado"
+    ></app-grid-last-protocol-migrated>
+
+
   </div>
 </div>
