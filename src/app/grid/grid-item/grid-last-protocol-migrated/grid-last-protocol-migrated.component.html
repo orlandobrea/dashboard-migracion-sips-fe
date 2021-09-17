@@ -5,16 +5,16 @@
     [ngClass]="
       horaDesdeUltimoEstudio > 48 || horaDesdeUltimoEstudio == null
         ? 'bg-red-700'
-        : horaDesdeUltimoEstudio > 23
+        : diasDesdeUltimoEstudio >= 1
         ? 'bg-yellow-500'
         : 'bg-green-500'
     "
   >
   <div *ngIf="horaDesdeUltimoEstudio !== null " title='Hora desde ultimo estudio migrado {{horaDesdeUltimoEstudio | date: "dd/MM HH:mm"}}'> 
-      <span *ngIf="diasDesdeUltimoEstudio>1">
+      <span *ngIf="diasDesdeUltimoEstudio>=1">
         ~ {{ diasDesdeUltimoEstudio }} dias 
       </span>
-      <span *ngIf="horaDesdeUltimoEstudio<=24">
+      <span *ngIf="diasDesdeUltimoEstudio<1">
         Hoy
       </span>
     </div>

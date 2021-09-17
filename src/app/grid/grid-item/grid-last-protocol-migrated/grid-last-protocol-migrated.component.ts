@@ -18,7 +18,7 @@ export class GridLastProtocolMigratedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.diasDesdeUltimoEstudio = Math.ceil(this.horaDesdeUltimoEstudio/24);
+    this.diasDesdeUltimoEstudio = Math.floor(this.horaDesdeUltimoEstudio/24);
   }
 
 }
