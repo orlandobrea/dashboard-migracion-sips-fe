@@ -39,7 +39,8 @@ export class DashboardService {
       horaFinUltimoSyncEfector: applyTimezoneToDate(
         responseItem.ultimoUpdateEfectorFin
       ),
-      horasDesdeUltimoEstudioMigrado: minutesFrom(responseItem.fechaUltimoEstudioMigrado)
+      horasDesdeUltimoEstudioMigrado: minutesFrom(responseItem.fechaUltimoEstudioMigrado),
+      fechaUltimoEstudioMigrado: applyTimezoneToDate(responseItem.fechaUltimoEstudioMigrado) 
     });
 
     const server = this.configService.getConfig().server;

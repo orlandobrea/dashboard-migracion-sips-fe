@@ -11,6 +11,8 @@ export class GridLastProtocolMigratedComponent implements OnInit {
 
   @Input() horaDesdeUltimoEstudio: any;
 
+  @Input() fechaUltimoEstudioMigrado: any;
+
   diasDesdeUltimoEstudio: number;
 
   constructor() { 

@@ -1,7 +1,14 @@
 <div class="flex justify-end">
   <span class="mr-2">{{ titulo }}</span>
   <div
-    class="p-1 items-center justify-center rounded-full text-white text-center w-20"
+    class="
+      p-1
+      items-center
+      justify-center
+      rounded-full
+      text-white text-center
+      w-20
+    "
     [ngClass]="
       horaDesdeUltimoEstudio > 48 || horaDesdeUltimoEstudio == null
         ? 'bg-red-700'
@@ -10,16 +17,17 @@
         : 'bg-green-500'
     "
   >
-  <div *ngIf="horaDesdeUltimoEstudio !== null"> 
-      <span *ngIf="diasDesdeUltimoEstudio>=1">
-        ~ {{ diasDesdeUltimoEstudio }} dias 
+    <div *ngIf="horaDesdeUltimoEstudio !== null" title='Fecha de último estudio migrado {{ fechaUltimoEstudioMigrado | date: "dd/MM/yyyy" }}'>
+      <span *ngIf="diasDesdeUltimoEstudio >= 1">
+        ~ {{ diasDesdeUltimoEstudio }} dias
       </span>
-      <span *ngIf="diasDesdeUltimoEstudio<1">
-        Hoy
-      </span>
+      <span *ngIf="diasDesdeUltimoEstudio < 1"> Hoy </span>
     </div>
-  <div *ngIf="horaDesdeUltimoEstudio == null " title='No hay fecha de ultimo estudio aun'>
-    -
+    <div
+      *ngIf="horaDesdeUltimoEstudio == null"
+      title="No hay fecha de ultimo estudio aun"
+    >
+      -
     </div>
   </div>
 </div>
